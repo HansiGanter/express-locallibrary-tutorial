@@ -11,3 +11,7 @@ router.get("/cool", function (req, res, next) {
 });
 
 module.exports = router;
+
+/*
+mongodb+srv://hansiganter:hykdut6syvBifivqap@cluster0.bzb0bdz.mongodb.net/local_library?retryWrites=true&w=majority
+*/
