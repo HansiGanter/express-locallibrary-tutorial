@@ -13,16 +13,6 @@ const helmet = require("helmet");
 
 const app = express();
 
-// Add helmet to the middleware chain.
-// Set CSP headers to allow our Bootstrap and Jquery to be served
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
-    },
-  })
-);
-
 // Set up rate limiter: maximum of twenty requests per minute
 const RateLimit = require("express-rate-limit");
 const limiter = RateLimit({
@@ -53,6 +43,16 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Add helmet to the middleware chain.
+// Set CSP headers to allow our Bootstrap and Jquery to be served
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+    },
+  })
+);
 
 app.use(compression()); // Compress all routes
 
